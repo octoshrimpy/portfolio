@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>htmx playground</title>
+  <style>
+    @import 'https://octoshrimpy.github.io/microcss/micro.css';
+  </style>
+
+  <link rel="stylesheet" href="custom.css">
+    
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.8.2/dist/htmx.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/adamvleggett/drawdown@master/drawdown.js"></script>
+  <script>
+
+    // this tells module/pages "we're loading this 
+    // properly and not loading individual modules"
+    window.isRoot = true
+
+    // wait until modules and their code is loaded
+    window.onload = async () => {
+
+      document.body.addEventListener('htmx:beforeSwap', function(evt) {
+        let content 
+        if(evt.detail.xhr.status === 404){
+            evt.detail.shouldSwap = true
+            content = `<!-- md -->
+
+# 404
+_looks like there's nothing here_`
+        } else {
+          content = evt.detail.serverResponse
+        }
+        
+        
+        // if markdown
+        if (content.startsWith("<!-- md -->")) {
+          
+          //remove first two lines, //@md and the routing
+          content = content.split("\n")
+          content.splice(0,2)
+          content = content.join("\n")
+          content = markdown(content)
+        }
+
+        evt.detail.serverResponse = content
+      });
+
+
+      let sel = `[hx-get="/home"]`
+      
+      // if there is a hashpath in the url
+      if (window.location.href.includes("#~")) {
+        
+        
+        // converts url hash to proper object
+        let hash = window.location.hash
+        .replace("#~?load=", "")
+        
+        console.log(hash)
+        // selector for the element that will be clicked
+        sel = `[hx-get^="${hash}"]`
+      }
+      
+      // load up appropriate content
+      // wait for elm to exist (from a module/page)
+      // and then trigger the click event
+      waitForElm(sel).then(elm => {
+        htmx.trigger(sel, "click")
+      })
+      
+      
+    }
+
+    // sElf DoCuMeNtInG
+    function waitForElm(selector) {
+      return new Promise(resolve => {
+          if (document.querySelector(selector)) {
+              return resolve(document.querySelector(selector));
+          }
+
+          const observer = new MutationObserver(mutations => {
+              if (document.querySelector(selector)) {
+                  resolve(document.querySelector(selector));
+                  observer.disconnect();
+              }
+          });
+
+          observer.observe(document.body, {
+              childList: true,
+              subtree: true
+          });
+      });
+    }
+  </script>
+
+</head>
+<body>
+  <header
+    hx-trigger="load"
+    hx-get="/modules/nav"
+    hx-swap="outerHTML"
+    ></header>
+    <main 
+      class="container"
+      hx-history-elt
+    >
+  </main>
+    <footer
+    hx-trigger="load"
+    hx-get="/modules/footer"
+    hx-swap="outerHTML"
+  ></footer>
+</body>
+</html>

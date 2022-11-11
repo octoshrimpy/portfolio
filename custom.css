@@ -1,0 +1,41 @@
+html,
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+html > main,
+body > main {
+  flex: 1;
+}
+
+.container > * {
+  opacity: 1;
+  transition: all 0.2s ease-out;
+}
+.container > *.htmx-added {
+  opacity: 0;
+  transition: all 0.2s ease-out;
+}
+
+nav [role=button] {
+  margin-right: inherit;
+  margin-left: inherit;
+  padding: var(--nav-link-spacing-vertical) var(--nav-link-spacing-horizontal);
+}
+nav [role=button].ghost {
+  --background-color: transparent;
+  --border-color: transparent;
+  --color: inherit;
+}
+nav [role=button].ghost:is([aria-current], :hover, :active, :focus) {
+  --color: var(--primary);
+}
+nav [role=button].ghost.nav-active {
+  --color: var(--primary);
+  text-decoration: underline;
+}
+nav [role=button].ghost.logo.nav-active {
+  --color: inherit;
+  text-decoration: initial;
+}/*# sourceMappingURL=custom.css.map */

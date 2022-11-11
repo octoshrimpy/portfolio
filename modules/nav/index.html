@@ -1,0 +1,59 @@
+<nav class="container-fluid">
+  <ul>
+    <li
+      hx-get="/home"
+      hx-trigger="click"
+      hx-target="main.container"
+      hx-push-url="/"
+      role="button"
+      class="ghost logo"
+    >
+      <strong>octoshrimpy</strong>
+    </li>
+  </ul>
+  <ul>
+    <li
+      hx-get="/projects"
+      hx-trigger="click"
+      hx-target="main.container"
+      hx-push-url="projects"
+      role="button"
+      class="ghost"
+    >projects</li>
+    <li
+      hx-get="/blog"
+      hx-trigger="click"
+      hx-target="main.container"
+      hx-push-url="/blog"
+      role="button"
+      class="ghost"
+    >blog</li>
+    <li
+      hx-get="/snippets"
+      hx-trigger="click"
+      hx-target="main.container"
+      hx-push-url="/snippets"
+      role="button"
+      class="ghost"
+    >snippets</li>
+    <li
+      hx-get="/brain"
+      hx-trigger="click"
+      hx-target="main.container"
+      hx-push-url="/brain"
+      role="button"
+      class="ghost"
+    >brain</li>
+  </ul>
+</nav>
+
+<script>
+  document.querySelectorAll("nav li").forEach(li => {
+    li.addEventListener("click", evt => {
+
+      let old = document.querySelector("nav .nav-active")
+      old != null && old.classList.remove("nav-active")
+      evt.target.classList.add("nav-active")
+    })
+  })
+</script>

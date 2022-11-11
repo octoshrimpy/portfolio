@@ -1,0 +1,65 @@
+
+// @todo pull this entire file into __sensible modules
+// sizing 
+html, 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  & > main {
+    flex: 1;
+  }
+}
+
+// I don't think this is doing anything
+.container > * {
+  opacity: 1;
+  transition: all 0.2s ease-out;
+  // margin-left: 0;
+  // margin-right: 0; 
+
+
+  &.htmx-added {
+    opacity: 0;
+    transition: all 0.2s ease-out;
+    // margin-left: 100%;
+  }
+  // &.htmx-settling {
+  //   opacity: 0;
+  //   margin-right: 100%;
+  // }
+}
+
+// ==================
+
+// support for ghost buttons on nav
+//@todo need to add support for ghost buttons everywhere
+nav {
+    // More support for role="button"
+    [role="button"] {
+      margin-right: inherit;
+      margin-left: inherit;
+      padding: var(--nav-link-spacing-vertical) var(--nav-link-spacing-horizontal);
+
+      &.ghost {
+        --background-color: transparent;
+        --border-color: transparent;
+        --color: inherit;
+
+        &:is([aria-current], :hover, :active, :focus) {
+          --color: var(--primary);
+        }
+        
+        &.nav-active {
+          --color: var(--primary);
+          text-decoration: underline;
+        }
+
+        &.logo.nav-active {
+          --color: inherit;
+          text-decoration: initial;
+        }
+      }
+    }
+}
