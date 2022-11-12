@@ -13,34 +13,34 @@
   </ul>
   <ul>
     <li
-      hx-get="/projects"
+      hx-get="/#projects"
       hx-trigger="click"
       hx-target="main.container"
-      hx-push-url="projects"
+      hx-push-url="/#projects"
       role="button"
       class="ghost"
     >projects</li>
     <li
-      hx-get="/blog"
+      hx-get="/#blog"
       hx-trigger="click"
       hx-target="main.container"
-      hx-push-url="/blog"
+      hx-push-url="/#blog"
       role="button"
       class="ghost"
     >blog</li>
     <li
-      hx-get="/snippets"
+      hx-get="/#projects/proj1"
       hx-trigger="click"
       hx-target="main.container"
-      hx-push-url="/snippets"
+      hx-push-url="/#projects/proj1"
       role="button"
       class="ghost"
-    >snippets</li>
+    >proj1</li>
     <li
-      hx-get="/brain"
+      hx-get="/#brain"
       hx-trigger="click"
       hx-target="main.container"
-      hx-push-url="/brain"
+      hx-push-url="/#brain"
       role="button"
       class="ghost"
     >brain</li>
@@ -48,6 +48,8 @@
 </nav>
 
 <script>
+
+  // add the styling to the nav items
   document.querySelectorAll("nav li").forEach(li => {
     li.addEventListener("click", evt => {
 
