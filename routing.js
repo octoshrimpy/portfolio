@@ -3,6 +3,13 @@ let defaultFolder        = "home"
 let defaultSlug          = "index"
 let mainContentContainer = "main.container"
 
+// setup markdown-it
+let md = window.markdownit()
+                .set({ 
+                  html: true, 
+                  breaks: true 
+                })
+
 // @todo this should probably be on htmx load, not on window load
 window.onload = async () => {
 
@@ -16,7 +23,8 @@ window.onload = async () => {
     }
 
     //@todo find better md2html that leaves html blocks intact
-    content = markdown(content)
+    // content = markdown(content)
+    content = md.render(content)
 
     evt.detail.serverResponse = content
   })
