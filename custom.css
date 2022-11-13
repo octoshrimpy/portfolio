@@ -1,3 +1,13 @@
+nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--background-color);
+  -webkit-backdrop-filter: blur(2rem);
+          backdrop-filter: blur(2rem);
+  z-index: 999;
+}
+
 html,
 body {
   min-height: 100vh;
@@ -18,24 +28,64 @@ body > main {
   transition: all 0.2s ease-out;
 }
 
-nav [role=button] {
+nav [role=button], nav button, nav input[type=button] {
   margin-right: inherit;
   margin-left: inherit;
   padding: var(--nav-link-spacing-vertical) var(--nav-link-spacing-horizontal);
 }
-nav [role=button].ghost {
+nav [role=button].ghost, nav button.ghost, nav input[type=button].ghost {
   --background-color: transparent;
   --border-color: transparent;
   --color: inherit;
 }
-nav [role=button].ghost:is([aria-current], :hover, :active, :focus) {
+nav [role=button].ghost:is([aria-current], :hover, :active, :focus), nav button.ghost:is([aria-current], :hover, :active, :focus), nav input[type=button].ghost:is([aria-current], :hover, :active, :focus) {
   --color: var(--primary);
 }
-nav [role=button].ghost.nav-active {
+nav [role=button].ghost.nav-active, nav button.ghost.nav-active, nav input[type=button].ghost.nav-active {
   --color: var(--primary);
   text-decoration: underline;
 }
-nav [role=button].ghost.logo.nav-active {
+nav [role=button].ghost.logo.nav-active, nav button.ghost.logo.nav-active, nav input[type=button].ghost.logo.nav-active {
   --color: inherit;
   text-decoration: initial;
+}
+
+p:last-child {
+  margin-bottom: initial;
+}
+
+:is(i, a)[class*=nf-].inline {
+  position: relative;
+  vertical-align: middle;
+  padding: 0 0.25rem;
+}
+
+.form-group :is([role=button],
+button,
+input),
+[role=form-group] :is([role=button],
+button,
+input) {
+  height: initial;
+  min-width: 2rem;
+  border-radius: 0;
+  margin: initial;
+}
+.form-group :is([role=button],
+button,
+input):first-child,
+[role=form-group] :is([role=button],
+button,
+input):first-child {
+  border-bottom-left-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+}
+.form-group :is([role=button],
+button,
+input):last-child,
+[role=form-group] :is([role=button],
+button,
+input):last-child {
+  border-bottom-right-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
 }/*# sourceMappingURL=custom.css.map */

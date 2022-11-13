@@ -7,7 +7,7 @@ let mainContentContainer = "main.container"
 let md = window.markdownit()
                 .set({ 
                   html: true, 
-                  breaks: true 
+                  // breaks: true 
                 })
 
 // @todo this should probably be on htmx load, not on window load
@@ -48,6 +48,8 @@ window.onload = async () => {
 
   // run request (runs the configRequest above)
   htmx.ajax("GET", `/#${folder}/${slug}`, mainContentContainer)
+  htmx.addClass(htmx.find(`[hx-get*=${folder}]`), 'nav-active')
+
 }
 
 // take in a URL and spit out an array of [folder, file (slug)] 

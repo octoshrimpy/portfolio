@@ -1,4 +1,14 @@
+nav {
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--background-color);
+  backdrop-filter: blur(2rem);
+  z-index: 999;
+}
 
+
+
+// =============================
 // @todo pull this entire file into __sensible modules
 // sizing 
 html, 
@@ -37,7 +47,8 @@ body {
 //@todo need to add support for ghost buttons everywhere
 nav {
     // More support for role="button"
-    [role="button"] {
+    [role="button"], button, input[type=button] {
+
       margin-right: inherit;
       margin-left: inherit;
       padding: var(--nav-link-spacing-vertical) var(--nav-link-spacing-horizontal);
@@ -62,4 +73,44 @@ nav {
         }
       }
     }
+}
+
+// remove extra margin on last paragraph
+
+p:last-child {
+  margin-bottom: initial;
+}
+
+// icons inline with text
+
+:is(i, a)[class*="nf-"].inline {
+  position: relative;
+  vertical-align: middle;
+  padding: 0 0.25rem;
+}
+
+// button group
+
+.form-group,
+[role=form-group] {
+  :is(
+    [role=button], 
+    button, 
+    input
+  ) {
+    height: initial;
+    min-width: 2rem;
+    border-radius: 0;
+    margin: initial;
+
+    &:first-child {
+      border-bottom-left-radius: var(--border-radius);
+      border-top-left-radius: var(--border-radius);
+    }
+
+    &:last-child {
+      border-bottom-right-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+    }
+  }
 }
