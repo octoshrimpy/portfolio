@@ -18,8 +18,10 @@ window.onload = async () => {
     let content = evt.detail.serverResponse
 
     if(evt.detail.xhr.status === 404){
-        evt.detail.shouldSwap = true
-        content = `# 404\n_looks like there's nothing here_`
+      console.log(evt.detail)
+      evt.detail.shouldSwap = true
+      let place = evt.detail.pathInfo.requestPath.split("/")[1]
+      content = `# 404\n_looks like there's nothing in my ${place}_`
     }
 
     //@todo find better md2html that leaves html blocks intact

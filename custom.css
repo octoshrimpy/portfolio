@@ -1,11 +1,16 @@
 nav {
   position: -webkit-sticky;
   position: sticky;
-  top: 0;
-  border-bottom: 1px solid var(--background-color);
   -webkit-backdrop-filter: blur(2rem);
           backdrop-filter: blur(2rem);
   z-index: 999;
+}
+nav#header {
+  border-bottom: 1px solid var(--background-color);
+  top: 0;
+}
+nav#footer {
+  bottom: 0;
 }
 
 html,
@@ -56,8 +61,13 @@ p:last-child {
 
 :is(i, a)[class*=nf-].inline {
   position: relative;
-  vertical-align: middle;
-  padding: 0 0.25rem;
+  vertical-align: text-top;
+  padding-right: 0.25rem;
+  padding-top: 0.125rem;
+  display: inline-block;
+}
+:is(i, a)[class*=nf-].inline:not(:first-child) {
+  margin-right: 0.25rem;
 }
 
 .form-group :is([role=button],
@@ -88,4 +98,25 @@ button,
 input):last-child {
   border-bottom-right-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
+}
+
+:is(i, a)[class^=nf-] {
+  font-family: "NerdFontsSymbols Nerd Font";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering (from devicons, et al) */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 0.15s ease-in-out;
+  color: currentColor;
+}
+
+a[class^=nf-] {
+  text-decoration: none;
+  color: var(--color);
+  cursor: pointer;
 }/*# sourceMappingURL=custom.css.map */

@@ -1,15 +1,20 @@
 nav {
   position: sticky;
-  top: 0;
-  border-bottom: 1px solid var(--background-color);
   backdrop-filter: blur(2rem);
   z-index: 999;
+  
+  &#header {
+    border-bottom: 1px solid var(--background-color);
+    top: 0;
+  }
+  &#footer {
+    bottom: 0;
+  }
 }
 
 
-
 // =============================
-// @todo pull this entire file into __sensible modules
+// @todo pull this into __sensible modules ?
 // sizing 
 html, 
 body {
@@ -75,6 +80,7 @@ nav {
     }
 }
 
+// =============================
 // remove extra margin on last paragraph
 
 p:last-child {
@@ -85,10 +91,19 @@ p:last-child {
 
 :is(i, a)[class*="nf-"].inline {
   position: relative;
-  vertical-align: middle;
-  padding: 0 0.25rem;
+  vertical-align: text-top;
+  padding-right: 0.25rem;
+  padding-top: 0.125rem;
+  display: inline-block;
+
+  &:not(:first-child) {
+    margin-right: 0.25rem;
+
+  }
 }
 
+
+// =============================
 // button group
 
 .form-group,
@@ -113,4 +128,28 @@ p:last-child {
       border-top-right-radius: var(--border-radius);
     }
   }
+}
+
+// ===-----------
+// only here because cdn.jsdelivr isn't updating fast enough
+
+:is(i, a)[class^="nf-"] {
+  font-family: 'NerdFontsSymbols Nerd Font';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering (from devicons, et al) */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 0.15s ease-in-out;
+  color: currentColor;
+}
+
+a[class^="nf-"] {
+ text-decoration: none;
+ color: var(--color);
+ cursor: pointer;
 }
