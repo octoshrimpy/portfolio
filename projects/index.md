@@ -4,6 +4,18 @@
 
   <header class="headings">
 
+  <a class="nf-fa-link inline" href="/#projects/colorchain"></a>
+  **Colorchaining**
+
+  _Predict next/previous color based on existing color ramp_
+  </header>
+
+</article>
+
+<article>
+
+  <header class="headings">
+
   **EML - Emmet Markup Language**
 
   _Compresses pages into a single [emmet]() query_
